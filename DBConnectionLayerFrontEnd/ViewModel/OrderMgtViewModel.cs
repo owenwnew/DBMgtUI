@@ -264,8 +264,43 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 customerPar.Append(customerRun);
                 body.Append(customerPar);
 
-                #region Invoice Item List Table
+
+                TableProperties customerInfoTblprop = new TableProperties(
+                    new TableBorders(
+                        new TopBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new BottomBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new LeftBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new RightBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new InsideHorizontalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 }),
+                    new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center },
+                    new TableStyle() { Val = "TableGrid" },
+                    new TableWidth() { Width = "5000", Type = TableWidthUnitValues.Pct });
+
+                Table customerInfoTable = new Table();
+                List<string> customerInfoTableData = new List<string>();
+                //invoiceTable.AppendChild<TableProperties>((TableProperties)tblprop.Clone());
+                customerInfoTableData.Add("Item");
+                customerInfoTableData.Add("Description");
+                customerInfoTableData.Add("Quantity");
+                customerInfoTableData.Add("Unit Price");
+                customerInfoTableData.Add("Item Total price");
+                customerInfoTable = AppendInvoiceTableInfo(customerInfoTableData, customerInfoTable, false);
+
+                customerInfoTableData = new List<string>();
+                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].item);
+                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].description);
+                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].quantity);
+                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].unitPrice);
+                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].totalPrice);
+                customerInfoTable = AppendInvoiceTableInfo(customerInfoTableData, customerInfoTable, false);
+
+                body.Append(customerInfoTable);
+
+
                 body.Append(new Paragraph(new Run(new Text("\n"))));
+
+                #region Invoice Item List Table
                 TableProperties tblprop = new TableProperties(
                     new TableBorders( 
                         new TopBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size= 0, Space = 0 },
@@ -299,20 +334,6 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 invoiceTable = AppendInvoiceTableInfo(tableData, invoiceTable, false);
 
                 body.Append(invoiceTable);
-                //string docText = null;
-                //using (StreamReader sr = new StreamReader(mainPart.GetStream()))
-                //{
-                //    docText = sr.ReadToEnd();
-                //}
-
-                //Regex regexText = new Regex(invoiceID.ToString());
-                //docText = regexText.Replace(docText, "#invoice#");
-
-
-                //using (StreamWriter sw = new StreamWriter(mainPart.GetStream(FileMode.Create)))
-                //{
-                //    sw.Write(docText);
-                //}
 
                 #endregion
 
@@ -490,7 +511,110 @@ namespace DBConnectionLayerFrontEnd.ViewModel
 
         }
 
+        public Table AppendCustomerTableInfo(List<string> tableData, Table table, bool header)
+        {
 
+            TableRow tr = new TableRow();
+            PreviousTablePropertyExceptions ptpex = new PreviousTablePropertyExceptions();
+            TableCellMarginDefault tcm = new TableCellMarginDefault();
+            tcm.TopMargin = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+
+            tcm.BottomMargin = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            ptpex.Append(tcm);
+            tr.Append(ptpex);
+
+            TableCell tc;
+
+
+
+
+            TableCellProperties tcp = new TableCellProperties(new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center });
+            tcp.TableCellMargin = new TableCellMargin(new RightMargin() { Type = TableWidthUnitValues.Pct, Width = "50" });
+            tcp.TableCellMargin.LeftMargin = new LeftMargin() { Type = TableWidthUnitValues.Pct, Width = "50" };
+            tcp.TableCellMargin.TopMargin = new TopMargin() { Type = TableWidthUnitValues.Pct, Width = "1" };
+
+
+
+            ParagraphProperties ppp = new ParagraphProperties(new Justification() { Val = JustificationValues.Center });
+            ppp.Append(new KeepLines());
+            ppp.Append(new KeepNext());
+            SpacingBetweenLines sp = new SpacingBetweenLines();
+            sp.After = "0";
+            ppp.Append(sp);
+
+
+
+
+            if (!header)
+            {
+                RunProperties rp = new RunProperties(new Bold() { Val = false });
+                Shading shading = new Shading();
+                rp.Bold.Val = false;
+                rp.RunFonts = new RunFonts() { Ascii = "Calibri" };
+                rp.FontSize = new FontSize() { Val = new StringValue("22") };
+
+                shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "e3e6e7" };
+
+                tcp.Shading = shading;
+                for (int i = 0; i < tableData.Count; i++)
+                {
+                    tc = new TableCell();
+                    TableStyle tableStyle = new TableStyle() { Val = "TableGrid" };
+
+                    // Make the table width 100% of the page width.
+                    TableWidth tableWidth = new TableWidth() { Width = "50000", Type = TableWidthUnitValues.Auto };
+                    tcp.Append(tableStyle, tableWidth);
+                    tc.Append((TableCellProperties)tcp.Clone());
+
+                    tc.Append((ParagraphProperties)ppp.Clone());
+
+                    Run r = new Run();
+                    r.PrependChild<RunProperties>((RunProperties)rp.Clone());
+                    r.Append(new Text(tableData[i].ToString()));
+                    tc.Append(new Paragraph(r));
+                    tr.Append(tc);
+                }
+            }
+            else
+            {
+                RunProperties rp = new RunProperties(new Bold() { Val = true }, new TabChar());
+                rp.Bold.Val = true;
+                rp.RunFonts = new RunFonts() { Ascii = "Arial" };
+                rp.FontSize = new FontSize() { Val = new StringValue("20") };
+                //Color color = new Color() { Val = "365F91", ThemeColor = ThemeColorValues.Accent1, ThemeShade = "BF" };
+                Shading shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "a7c6d7" };
+                //ppp.Shading = shading;
+
+                tcp.TableCellMargin.TopMargin.Width = "200";
+                tcp.Shading = shading;
+
+                for (int i = 0; i < tableData.Count; i++)
+                {
+                    tc = new TableCell();
+                    TableStyle tableStyle = new TableStyle() { Val = "TableGrid" };
+
+                    // Make the table width 100% of the page width.
+                    TableWidth tableWidth = new TableWidth() { Width = "50000", Type = TableWidthUnitValues.Auto };
+                    tcp.Append(tableStyle, tableWidth);
+                    tc.Append((TableCellProperties)tcp.Clone());
+                    tc.Append((ParagraphProperties)ppp.Clone());
+
+
+                    Run r = new Run();
+                    r.PrependChild<RunProperties>((RunProperties)rp.Clone());
+                    r.Append(new Text(tableData[i].ToString()));
+                    tc.Append(new Paragraph(r));
+                    tr.Append(tc);
+
+                }
+            }
+
+
+            table.Append(tr);
+
+            return table;
+
+        }
 
         public string generateInvoiceNumber ()
         {
