@@ -1,0 +1,37 @@
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.csprojResolveAssemblyReference.cache
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.dll
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.pdb
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\bin\Debug\DBConnectionLayer.dll
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\bin\Debug\DBConnectionLayer.pdb
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Bson.dll
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.Core.dll
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.dll
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Bson.xml
+C:\Software Development\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.xml
+F:\DBConnectionLayer\DBConnectionLayer\bin\Debug\DBConnectionLayer.dll
+F:\DBConnectionLayer\DBConnectionLayer\bin\Debug\DBConnectionLayer.pdb
+F:\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Bson.dll
+F:\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.Core.dll
+F:\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.dll
+F:\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Bson.xml
+F:\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.xml
+F:\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.dll
+F:\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.pdb
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\DBConnectionLayer.dll
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\DBConnectionLayer.pdb
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Bson.dll
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.Core.dll
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.dll
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Bson.xml
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.xml
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.dll
+D:\software\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.pdb
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\DBConnectionLayer.dll
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\DBConnectionLayer.pdb
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Bson.dll
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.Core.dll
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.dll
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Bson.xml
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.xml
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.dll
+C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.pdb

@@ -1,0 +1,30 @@
+﻿<Window x:Class="DBConnectionLayerFrontEnd.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBConnectionLayerFrontEnd"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1000">
+    <Window.Resources>
+        <ResourceDictionary Source="Resource/FrontEndResourceDictionary.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Height="50" KeyboardNavigation.TabNavigation="Cycle" Grid.Row="0">
+            <MenuItem Header="" Height="50">
+                <MenuItem Header="DB connection test" Command="{Binding ConnectToDB}"/>
+            </MenuItem>
+        </Menu>
+        
+        <ContentControl x:Name="Toolbar" Grid.Row="1" KeyboardNavigation.TabNavigation="Once" Content="{Binding Path=ToolBarCommands}" ContentTemplate="{StaticResource toolBarTemplate}"/>
+
+        <ContentControl x:Name="workspace" Grid.Row="2" Content="{Binding Path=WorkSpaces}" ContentTemplate="{StaticResource WorkspacesTemplate}"/>
+
+    </Grid>
+</Window>

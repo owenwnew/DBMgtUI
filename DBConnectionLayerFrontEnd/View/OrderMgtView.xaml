@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="DBConnectionLayerFrontEnd.View.OrderMgtView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DBConnectionLayerFrontEnd.View"
+             xmlns:vm="clr-namespace:DBConnectionLayerFrontEnd.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200" Background="White">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resource/FrontEndResourceDictionary.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Margin="1" BorderThickness="0,0,0,1" BorderBrush="Gray">
+            <StackPanel Margin="2" Orientation="Horizontal">
+                <Button Content="New Invoice List" Command="{Binding CreateList}" Margin="20,2,20,2" Background="White" BorderThickness="0" FontWeight="DemiBold"  Foreground="#3378A7" FontFamily="Monospace" FontSize="15"/>
+                <Button Content="Search Invoice" Command="{Binding SearchList}" Margin="20,2,20,2" Background="White" BorderThickness="0" FontWeight="DemiBold"  Foreground="#3378A7" FontFamily="Monospace" FontSize="15"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="1" Margin="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=" 150"/>
+                            <ColumnDefinition Width=" 165"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Customer Name" Margin="0,15,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Phone #"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="Email Address"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Date DD/MM/YY"/>
+                        <Label Grid.Row="4" Grid.Column="0" Content="HST (%)"/>
+                        <Label Grid.Row="5" Grid.Column="0" Content="Discount (%)"/>
+                        <Label Grid.Row="6" Grid.Column="0" Content="Paid Amount"/>
+                        <Label Grid.Row="7" Grid.Column="0" Content="Invoice Status"/>
+                        <Label Grid.Row="8" Grid.Column="0" Content="Invoice Number"/>
+                        <Button Grid.Row="9" Grid.Column="0" Content="Save Invoice" Command="{Binding SaveListToDB}" Margin="20,2,20,2" Background="White" BorderThickness="0" FontWeight="DemiBold" Foreground="#3378A7" FontFamily="Monospace" FontSize="15"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="5,20,5,5" Text="{Binding Path=customerName, UpdateSourceTrigger=propertyChanged}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" Text="{Binding Path= phoneNum, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,5,5" Text="{Binding Path= emailAddress, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="5,5,5,5" Text="{Binding Path= date, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Margin="5,5,5,5" Text="{Binding Path= hST, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Margin="5,5,5,5" Text="{Binding Path=discount, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Margin="5,5,5,5" Text="{Binding Path=paidAmount, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Grid.Row="7" Grid.Column="1" Content="{Binding Path=saveStatus}" />
+                        <Label Grid.Row="8" Grid.Column="1" Content="{Binding Path=invoiceID}" />
+                        <Button Grid.Row="9" Grid.Column="1" Content="Invoice Document" Command="{Binding CreateInvoiceWordDocument}"  Margin="20,2,20,2" Background="White" BorderThickness="0" FontWeight="DemiBold" Foreground="#3378A7" FontFamily="Monospace" FontSize="15"/>
+
+                    </Grid>        
+                </StackPanel>
+                <Grid Grid.Column="1">
+                    <ContentControl Content="{Binding Path=Workspaces}" ContentTemplate="{StaticResource OrdersWorkspacesTemplate}"/>
+                </Grid>
+            </Grid>
+            
+        </Border>
+    </Grid>    
+</UserControl>
