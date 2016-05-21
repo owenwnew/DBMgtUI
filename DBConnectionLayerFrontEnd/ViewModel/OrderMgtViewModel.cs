@@ -208,61 +208,61 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 Body body = mainPart.Document.Body;
 
 
-                Paragraph invoicePar = new Paragraph();
-                ParagraphProperties invoiceParP = new ParagraphProperties();
-                Justification rightJustficiation = new Justification() { Val = JustificationValues.Right };
-                invoiceParP.Append(rightJustficiation);
+                //Paragraph invoicePar = new Paragraph();
+                //ParagraphProperties invoiceParP = new ParagraphProperties();
+                //Justification rightJustficiation = new Justification() { Val = JustificationValues.Right };
+                //invoiceParP.Append(rightJustficiation);
 
-                Run run = new Run();
-                RunProperties runProp = new RunProperties();
-                FontSize fontSize = new FontSize() { Val = "30" };
-                Color fontColor = new Color() { Val = "365F91" };
-                MarginHeight runMargin = new MarginHeight() { Val = 0};
-                Text txtLine1 = new Text("SALES RECEIPT");
-                Text txtLine2 = new Text("Inovice #: " + "P2SO-" + invoiceID);
-                runProp.Append(fontSize);
-                runProp.Append(fontColor);
-                runProp.Append(runMargin);
-                run.Append(runProp);
-                run.Append(txtLine1);
-                run.Append(new Break());
-                run.Append(txtLine2);
+                //Run run = new Run();
+                //RunProperties runProp = new RunProperties();
+                //FontSize fontSize = new FontSize() { Val = "30" };
+                //Color fontColor = new Color() { Val = "365F91" };
+                //MarginHeight runMargin = new MarginHeight() { Val = 0};
+                //Text txtLine1 = new Text("SALES RECEIPT");
+                //Text txtLine2 = new Text("Inovice #: " + "P2SO-" + invoiceID);
+                //runProp.Append(fontSize);
+                //runProp.Append(fontColor);
+                //runProp.Append(runMargin);
+                //run.Append(runProp);
+                //run.Append(txtLine1);
+                //run.Append(new Break());
+                //run.Append(txtLine2);
 
-                invoicePar.Append(invoiceParP);
-                invoicePar.Append(run);
-                body.Append(invoicePar);
+                //invoicePar.Append(invoiceParP);
+                //invoicePar.Append(run);
+                //body.Append(invoicePar);
 
 
 
-                Paragraph customerPar = new Paragraph();
-                ParagraphProperties customerParP = new ParagraphProperties();
-                Justification leftJustficiation = new Justification() { Val = JustificationValues.Left };
-                customerParP.Append(leftJustficiation);
+                //Paragraph customerPar = new Paragraph();
+                //ParagraphProperties customerParP = new ParagraphProperties();
+                //Justification leftJustficiation = new Justification() { Val = JustificationValues.Left };
+                //customerParP.Append(leftJustficiation);
 
-                Run customerRun = new Run();
-                RunProperties customerRunProp = new RunProperties();
-                FontSize customerFontSize = new FontSize() { Val = "22" };
-                Color customerFontColor = new Color() { Val = "365F91" };
-                MarginHeight customerRunMargin = new MarginHeight() { Val = 0 };
-                Text customerLine1 = new Text("Customer: " + this.customerName);
-                Text customerLine2 = new Text("Email address: " + "sample@sampleEmail.com");
-                Text customerLine3 = new Text("Contact: " + "000-000-0000");
-                DateTime today = DateTime.Today;
-                Text customerLine4 = new Text("Date: "+ today.ToString("d"));
-                customerRunProp.Append(customerFontSize);
-                customerRunProp.Append(customerFontColor);
-                customerRunProp.Append(customerRunMargin);
-                customerRun.Append(customerRunProp);
-                customerRun.Append(customerLine1);
-                customerRun.Append(new Break());
-                customerRun.Append(customerLine2);
-                customerRun.Append(new Break());
-                customerRun.Append(customerLine3);
-                customerRun.Append(new Break());
-                customerRun.Append(customerLine4);
-                customerPar.Append(customerParP);
-                customerPar.Append(customerRun);
-                body.Append(customerPar);
+                //Run customerRun = new Run();
+                //RunProperties customerRunProp = new RunProperties();
+                //FontSize customerFontSize = new FontSize() { Val = "22" };
+                //Color customerFontColor = new Color() { Val = "365F91" };
+                //MarginHeight customerRunMargin = new MarginHeight() { Val = 0 };
+                //Text customerLine1 = new Text("Customer: " + this.customerName);
+                //Text customerLine2 = new Text("Email address: " + "sample@sampleEmail.com");
+                //Text customerLine3 = new Text("Contact: " + "000-000-0000");
+                //DateTime today = DateTime.Today;
+                //Text customerLine4 = new Text("Date: "+ today.ToString("d"));
+                //customerRunProp.Append(customerFontSize);
+                //customerRunProp.Append(customerFontColor);
+                //customerRunProp.Append(customerRunMargin);
+                //customerRun.Append(customerRunProp);
+                //customerRun.Append(customerLine1);
+                //customerRun.Append(new Break());
+                //customerRun.Append(customerLine2);
+                //customerRun.Append(new Break());
+                //customerRun.Append(customerLine3);
+                //customerRun.Append(new Break());
+                //customerRun.Append(customerLine4);
+                //customerPar.Append(customerParP);
+                //customerPar.Append(customerRun);
+                //body.Append(customerPar);
 
 
                 TableProperties customerInfoTblprop = new TableProperties(
@@ -274,27 +274,26 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                         new InsideHorizontalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
                         new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 }),
                     new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center },
-                    new TableStyle() { Val = "TableGrid" },
+                    //new TableStyle() { Val = "TableGrid" },
                     new TableWidth() { Width = "5000", Type = TableWidthUnitValues.Pct });
 
                 Table customerInfoTable = new Table();
                 List<string> customerInfoTableData = new List<string>();
-                //invoiceTable.AppendChild<TableProperties>((TableProperties)tblprop.Clone());
-                customerInfoTableData.Add("Item");
-                customerInfoTableData.Add("Description");
-                customerInfoTableData.Add("Quantity");
-                customerInfoTableData.Add("Unit Price");
-                customerInfoTableData.Add("Item Total price");
-                customerInfoTable = AppendInvoiceTableInfo(customerInfoTableData, customerInfoTable, false);
+                customerInfoTable.AppendChild<TableProperties>((TableProperties)customerInfoTblprop.Clone());
+                customerInfoTableData.Add("Customer: " +this.customerName);
+                customerInfoTableData.Add("SALES RECEIPT");
+                customerInfoTable = AppendCustomerTableInfo(customerInfoTableData, customerInfoTable, false);
+
 
                 customerInfoTableData = new List<string>();
-                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].item);
-                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].description);
-                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].quantity);
-                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].unitPrice);
-                customerInfoTableData.Add(this._itemListViewModel.InvoiceList[0].totalPrice);
-                customerInfoTable = AppendInvoiceTableInfo(customerInfoTableData, customerInfoTable, false);
+                customerInfoTableData.Add("Email Address:" + this.emailAddress);
+                customerInfoTableData.Add("Invoice P2SO-" + invoiceID);
+                customerInfoTable = AppendCustomerTableInfo(customerInfoTableData, customerInfoTable, false);
 
+                customerInfoTableData = new List<string>();
+                customerInfoTableData.Add("Contact: " + this.phoneNum);
+                customerInfoTableData.Add("Date: " + this.date);
+                customerInfoTable = AppendCustomerTableInfo(customerInfoTableData, customerInfoTable, false);
                 body.Append(customerInfoTable);
 
 
@@ -397,10 +396,6 @@ namespace DBConnectionLayerFrontEnd.ViewModel
             wordApp.Documents.Open(pathName + @"\"+"Invoice " + invoiceID.ToString() + ".docx");
 
             wordApp.Visible = true;
-            
-            //Microsoft.Office.Interop.Word.Application WordApp = new Microsoft.Office.Interop.Word.Application();
-
-
 
         }
 
@@ -532,41 +527,55 @@ namespace DBConnectionLayerFrontEnd.ViewModel
             tcp.TableCellMargin = new TableCellMargin(new RightMargin() { Type = TableWidthUnitValues.Pct, Width = "50" });
             tcp.TableCellMargin.LeftMargin = new LeftMargin() { Type = TableWidthUnitValues.Pct, Width = "50" };
             tcp.TableCellMargin.TopMargin = new TopMargin() { Type = TableWidthUnitValues.Pct, Width = "1" };
+            tcp.TableCellBorders = new TableCellBorders(
+                        new TopBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new BottomBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new LeftBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new RightBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new InsideHorizontalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 }
+                );
 
 
-
-            ParagraphProperties ppp = new ParagraphProperties(new Justification() { Val = JustificationValues.Center });
-            ppp.Append(new KeepLines());
-            ppp.Append(new KeepNext());
+            ParagraphProperties ppl = new ParagraphProperties(new Justification() { Val = JustificationValues.Left });
+            ParagraphProperties ppr = new ParagraphProperties(new Justification() { Val = JustificationValues.Right });
+            ppl.Append(new KeepLines());
+            ppl.Append(new KeepNext());
             SpacingBetweenLines sp = new SpacingBetweenLines();
             sp.After = "0";
-            ppp.Append(sp);
+            ppl.Append(sp);
+
+            ppr.Append(new KeepLines());
+            ppr.Append(new KeepNext());
+            SpacingBetweenLines spr = new SpacingBetweenLines();
+            spr.After = "0";
+            ppr.Append(spr);
 
 
 
-
-            if (!header)
-            {
-                RunProperties rp = new RunProperties(new Bold() { Val = false });
+            RunProperties rp = new RunProperties(new Bold() { Val = false });
                 Shading shading = new Shading();
                 rp.Bold.Val = false;
                 rp.RunFonts = new RunFonts() { Ascii = "Calibri" };
-                rp.FontSize = new FontSize() { Val = new StringValue("22") };
+                rp.FontSize = new FontSize() { Val = new StringValue("26") };
 
-                shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "e3e6e7" };
+                shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto" };
 
                 tcp.Shading = shading;
                 for (int i = 0; i < tableData.Count; i++)
                 {
                     tc = new TableCell();
-                    TableStyle tableStyle = new TableStyle() { Val = "TableGrid" };
+                    //TableStyle tableStyle = new TableStyle() { Val = "TableGrid" };
 
                     // Make the table width 100% of the page width.
                     TableWidth tableWidth = new TableWidth() { Width = "50000", Type = TableWidthUnitValues.Auto };
-                    tcp.Append(tableStyle, tableWidth);
+                    //tcp.Append(tableStyle, tableWidth);
+                    tcp.Append(tableWidth);
                     tc.Append((TableCellProperties)tcp.Clone());
-
-                    tc.Append((ParagraphProperties)ppp.Clone());
+                    if(i == 0 || i == 2 || i == 4)
+                        tc.Append((ParagraphProperties)ppl.Clone());
+                    else
+                        tc.Append((ParagraphProperties)ppr.Clone());
 
                     Run r = new Run();
                     r.PrependChild<RunProperties>((RunProperties)rp.Clone());
@@ -574,40 +583,7 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                     tc.Append(new Paragraph(r));
                     tr.Append(tc);
                 }
-            }
-            else
-            {
-                RunProperties rp = new RunProperties(new Bold() { Val = true }, new TabChar());
-                rp.Bold.Val = true;
-                rp.RunFonts = new RunFonts() { Ascii = "Arial" };
-                rp.FontSize = new FontSize() { Val = new StringValue("20") };
-                //Color color = new Color() { Val = "365F91", ThemeColor = ThemeColorValues.Accent1, ThemeShade = "BF" };
-                Shading shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "a7c6d7" };
-                //ppp.Shading = shading;
-
-                tcp.TableCellMargin.TopMargin.Width = "200";
-                tcp.Shading = shading;
-
-                for (int i = 0; i < tableData.Count; i++)
-                {
-                    tc = new TableCell();
-                    TableStyle tableStyle = new TableStyle() { Val = "TableGrid" };
-
-                    // Make the table width 100% of the page width.
-                    TableWidth tableWidth = new TableWidth() { Width = "50000", Type = TableWidthUnitValues.Auto };
-                    tcp.Append(tableStyle, tableWidth);
-                    tc.Append((TableCellProperties)tcp.Clone());
-                    tc.Append((ParagraphProperties)ppp.Clone());
-
-
-                    Run r = new Run();
-                    r.PrependChild<RunProperties>((RunProperties)rp.Clone());
-                    r.Append(new Text(tableData[i].ToString()));
-                    tc.Append(new Paragraph(r));
-                    tr.Append(tc);
-
-                }
-            }
+            
 
 
             table.Append(tr);

@@ -35,3 +35,12 @@ C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\
 C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\bin\Debug\MongoDB.Driver.xml
 C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.dll
 C:\Software Development\DBConnectionLib\DBConnectionLayer\DBConnectionLayer\obj\Debug\DBConnectionLayer.pdb
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\DBConnectionLayer.dll
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\DBConnectionLayer.pdb
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\MongoDB.Bson.dll
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\MongoDB.Driver.Core.dll
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\MongoDB.Driver.dll
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\MongoDB.Bson.xml
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\MongoDB.Driver.xml
+D:\software\DBMgtUI\DBConnectionLayer\obj\Debug\DBConnectionLayer.dll
+D:\software\DBMgtUI\DBConnectionLayer\obj\Debug\DBConnectionLayer.pdb
