@@ -206,65 +206,8 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 MainDocumentPart mainPart = document.MainDocumentPart;
 
                 Body body = mainPart.Document.Body;
-
-
-                //Paragraph invoicePar = new Paragraph();
-                //ParagraphProperties invoiceParP = new ParagraphProperties();
-                //Justification rightJustficiation = new Justification() { Val = JustificationValues.Right };
-                //invoiceParP.Append(rightJustficiation);
-
-                //Run run = new Run();
-                //RunProperties runProp = new RunProperties();
-                //FontSize fontSize = new FontSize() { Val = "30" };
-                //Color fontColor = new Color() { Val = "365F91" };
-                //MarginHeight runMargin = new MarginHeight() { Val = 0};
-                //Text txtLine1 = new Text("SALES RECEIPT");
-                //Text txtLine2 = new Text("Inovice #: " + "P2SO-" + invoiceID);
-                //runProp.Append(fontSize);
-                //runProp.Append(fontColor);
-                //runProp.Append(runMargin);
-                //run.Append(runProp);
-                //run.Append(txtLine1);
-                //run.Append(new Break());
-                //run.Append(txtLine2);
-
-                //invoicePar.Append(invoiceParP);
-                //invoicePar.Append(run);
-                //body.Append(invoicePar);
-
-
-
-                //Paragraph customerPar = new Paragraph();
-                //ParagraphProperties customerParP = new ParagraphProperties();
-                //Justification leftJustficiation = new Justification() { Val = JustificationValues.Left };
-                //customerParP.Append(leftJustficiation);
-
-                //Run customerRun = new Run();
-                //RunProperties customerRunProp = new RunProperties();
-                //FontSize customerFontSize = new FontSize() { Val = "22" };
-                //Color customerFontColor = new Color() { Val = "365F91" };
-                //MarginHeight customerRunMargin = new MarginHeight() { Val = 0 };
-                //Text customerLine1 = new Text("Customer: " + this.customerName);
-                //Text customerLine2 = new Text("Email address: " + "sample@sampleEmail.com");
-                //Text customerLine3 = new Text("Contact: " + "000-000-0000");
-                //DateTime today = DateTime.Today;
-                //Text customerLine4 = new Text("Date: "+ today.ToString("d"));
-                //customerRunProp.Append(customerFontSize);
-                //customerRunProp.Append(customerFontColor);
-                //customerRunProp.Append(customerRunMargin);
-                //customerRun.Append(customerRunProp);
-                //customerRun.Append(customerLine1);
-                //customerRun.Append(new Break());
-                //customerRun.Append(customerLine2);
-                //customerRun.Append(new Break());
-                //customerRun.Append(customerLine3);
-                //customerRun.Append(new Break());
-                //customerRun.Append(customerLine4);
-                //customerPar.Append(customerParP);
-                //customerPar.Append(customerRun);
-                //body.Append(customerPar);
-
-
+                
+                #region customer Info table
                 TableProperties customerInfoTblprop = new TableProperties(
                     new TableBorders(
                         new TopBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
@@ -295,7 +238,7 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 customerInfoTableData.Add("Date: " + this.date);
                 customerInfoTable = AppendCustomerTableInfo(customerInfoTableData, customerInfoTable, false);
                 body.Append(customerInfoTable);
-
+                #endregion
 
                 body.Append(new Paragraph(new Run(new Text("\n"))));
 
@@ -310,7 +253,7 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                         new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 }
                         ),
                     new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center},
-                    new TableStyle() { Val = "TableGrid"},
+                    //new TableStyle() { Val = "TableGrid"},
                     new TableWidth() { Width = "5000", Type = TableWidthUnitValues.Pct}
                     );
 
@@ -336,53 +279,103 @@ namespace DBConnectionLayerFrontEnd.ViewModel
 
                 #endregion
 
+                body.Append(new Paragraph(new Run(new Text("\n"))));
+
                 #region total price output
-                Paragraph totalPricePara = new Paragraph();
-                ParagraphProperties totalPriceParaP = new ParagraphProperties();
-                Justification pricePositionJustification = new Justification() { Val = JustificationValues.Right };
-                totalPriceParaP.Append(pricePositionJustification);
+
 
                 double itemSubTotal = 0;
                 for (int i = 0; i < this._itemListViewModel.InvoiceList.Count; i++)
                 {
-                    itemSubTotal += Math.Round(Convert.ToDouble(this._itemListViewModel.InvoiceList[i].totalPrice),2); 
+                    itemSubTotal += Math.Round(Convert.ToDouble(this._itemListViewModel.InvoiceList[i].totalPrice), 2);
                 }
 
                 double totalPrice = 0;
                 double hstAmount = 0;
 
-                totalPrice = Math.Round(itemSubTotal * (1 + Convert.ToDouble(this.hST) / 100),2);
+                totalPrice = Math.Round(itemSubTotal * (1 + Convert.ToDouble(this.hST) / 100), 2);
                 hstAmount = Math.Round(itemSubTotal * Convert.ToDouble(this.hST) / 100, 2);
 
 
-                Run totalPriceRun = new Run();
-                RunProperties totalPriceRunP = new RunProperties();
-                FontSize totalPriceFontSize = new FontSize() { Val = "22" };
-                Color totalPriceFontColor = new Color() { Val = "365F91" };
-                MarginHeight totalPriceMargin = new MarginHeight() { Val = 0 };
-                Text subTotalPriceLine = new Text("Sub Toal: " + itemSubTotal.ToString("N2"));
-                Text HSTAmountLine = new Text("HST: " + hstAmount.ToString("N2"));
-                Text totalPriceLine = new Text("Total: " + totalPrice.ToString("N2"));
-                Text paidAmount = new Text("Paid: ");
-                Text balance = new Text("Balance: " );
-                totalPriceRunP.Append(totalPriceFontSize);
-                totalPriceRunP.Append(totalPriceFontColor);
-                totalPriceRunP.Append(totalPriceMargin);
-                totalPriceRun.Append(totalPriceRunP);
-                totalPriceRun.Append(subTotalPriceLine);
-                totalPriceRun.Append(new Break());
-                totalPriceRun.Append(HSTAmountLine);
-                totalPriceRun.Append(new Break());
-                totalPriceRun.Append(totalPriceLine);
-                totalPriceRun.Append(new Break());
-                totalPriceRun.Append(paidAmount);
-                totalPriceRun.Append(new Break());
-                totalPriceRun.Append(balance);
+                TableProperties totalPriceTableProp = new TableProperties(
+                    new TableBorders(
+                        new TopBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new BottomBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new LeftBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new RightBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new InsideHorizontalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 }),    
+                    new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center },
+                    new TableWidth() { Width = "5000", Type = TableWidthUnitValues.Pct });
+
+                Table totalPriceTable = new Table();
+
+                totalPriceTable.AppendChild<TableProperties>((TableProperties)totalPriceTableProp.Clone());
+
+                List<string> totalPriceTableData = new List<string>();
+                totalPriceTableData.Add("Sub Total:");
+                totalPriceTableData.Add(itemSubTotal.ToString("N2"));
+                totalPriceTable = AppendTotalPriceTableInfo(totalPriceTableData, totalPriceTable, false);
 
 
-                totalPricePara.Append(totalPriceParaP);
-                totalPricePara.Append(totalPriceRun);
-                body.Append(totalPricePara);
+                totalPriceTableData = new List<string>();
+                totalPriceTableData.Add("HST:");
+                totalPriceTableData.Add(hstAmount.ToString("N2"));
+                totalPriceTable = AppendTotalPriceTableInfo(totalPriceTableData, totalPriceTable, false);
+
+                totalPriceTableData = new List<string>();
+                totalPriceTableData.Add("Total:");
+                totalPriceTableData.Add(totalPrice.ToString("N2"));
+                totalPriceTable = AppendTotalPriceTableInfo(totalPriceTableData, totalPriceTable, false);
+
+                totalPriceTableData = new List<string>();
+                totalPriceTableData.Add("Paid:");
+                totalPriceTableData.Add(this.paidAmount);
+                totalPriceTable = AppendTotalPriceTableInfo(totalPriceTableData, totalPriceTable, false);
+
+                totalPriceTableData = new List<string>();
+                totalPriceTableData.Add("Balance:");
+                totalPriceTableData.Add((totalPrice - Convert.ToDouble(this.paidAmount)).ToString("N2"));
+                totalPriceTable = AppendTotalPriceTableInfo(totalPriceTableData, totalPriceTable, false);
+                body.Append(totalPriceTable);
+
+
+
+
+                //Paragraph totalPricePara = new Paragraph();
+                //ParagraphProperties totalPriceParaP = new ParagraphProperties();
+                //Justification pricePositionJustification = new Justification() { Val = JustificationValues.Right };
+                //totalPriceParaP.Append(pricePositionJustification);
+
+
+                //Run totalPriceRun = new Run();
+                //RunProperties totalPriceRunP = new RunProperties();
+                //FontSize totalPriceFontSize = new FontSize() { Val = "22" };
+                //Color totalPriceFontColor = new Color() { Val = "365F91" };
+                //MarginHeight totalPriceMargin = new MarginHeight() { Val = 0 };
+                //Text subTotalPriceLine = new Text("Sub Toal: " + itemSubTotal.ToString("N2"));
+                //Text HSTAmountLine = new Text("HST: " + hstAmount.ToString("N2"));
+                //Text totalPriceLine = new Text("Total: " + totalPrice.ToString("N2"));
+                //Text paidAmount = new Text("Paid: ");
+                //Text balance = new Text("Balance: " );
+                //totalPriceRunP.Append(totalPriceFontSize);
+                //totalPriceRunP.Append(totalPriceFontColor);
+                //totalPriceRunP.Append(totalPriceMargin);
+                //totalPriceRun.Append(totalPriceRunP);
+                //totalPriceRun.Append(subTotalPriceLine);
+                //totalPriceRun.Append(new Break());
+                //totalPriceRun.Append(HSTAmountLine);
+                //totalPriceRun.Append(new Break());
+                //totalPriceRun.Append(totalPriceLine);
+                //totalPriceRun.Append(new Break());
+                //totalPriceRun.Append(paidAmount);
+                //totalPriceRun.Append(new Break());
+                //totalPriceRun.Append(balance);
+
+
+                //totalPricePara.Append(totalPriceParaP);
+                //totalPricePara.Append(totalPriceRun);
+                //body.Append(totalPricePara);
 
                 
                 #endregion
@@ -448,11 +441,11 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 for (int i = 0; i < tableData.Count; i++)
                 {
                     tc = new TableCell();
-                    TableStyle tableStyle = new TableStyle() { Val = "TableGrid" };
+                    //TableStyle tableStyle = new TableStyle() { Val = "TableGrid" };
 
                     // Make the table width 100% of the page width.
                     TableWidth tableWidth = new TableWidth() { Width = "50000", Type = TableWidthUnitValues.Auto };
-                    tcp.Append(tableStyle, tableWidth);
+                    tcp.Append(tableWidth);
                     tc.Append((TableCellProperties)tcp.Clone());
 
                     tc.Append((ParagraphProperties)ppp.Clone());
@@ -591,6 +584,101 @@ namespace DBConnectionLayerFrontEnd.ViewModel
             return table;
 
         }
+
+        public Table AppendTotalPriceTableInfo(List<string> tableData, Table table, bool header)
+        {
+
+            TableRow tr = new TableRow();
+            PreviousTablePropertyExceptions ptpex = new PreviousTablePropertyExceptions();
+            TableCellMarginDefault tcm = new TableCellMarginDefault();
+            tcm.TopMargin = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+
+            tcm.BottomMargin = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            ptpex.Append(tcm);
+            tr.Append(ptpex);
+
+            TableCell tc;
+
+
+
+
+            TableCellProperties tcp = new TableCellProperties(new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center });
+            tcp.TableCellMargin = new TableCellMargin(new RightMargin() { Type = TableWidthUnitValues.Pct, Width = "50" });
+            tcp.TableCellMargin.LeftMargin = new LeftMargin() { Type = TableWidthUnitValues.Pct, Width = "50" };
+            tcp.TableCellMargin.TopMargin = new TopMargin() { Type = TableWidthUnitValues.Pct, Width = "1" };
+            tcp.TableCellBorders = new TableCellBorders(
+                        new TopBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new BottomBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new LeftBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new RightBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new InsideHorizontalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 },
+                        new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.None), Size = 0, Space = 0 }
+                );
+
+
+            ParagraphProperties ppl = new ParagraphProperties(new Justification() { Val = JustificationValues.Left });
+            ParagraphProperties ppr = new ParagraphProperties(new Justification() { Val = JustificationValues.Right });
+            ppl.Append(new KeepLines());
+            ppl.Append(new KeepNext());
+            SpacingBetweenLines sp = new SpacingBetweenLines();
+            sp.After = "0";
+            ppl.Append(sp);
+
+            ppr.Append(new KeepLines());
+            ppr.Append(new KeepNext());
+            SpacingBetweenLines spr = new SpacingBetweenLines();
+            spr.After = "0";
+            ppr.Append(spr);
+
+
+
+            RunProperties rp = new RunProperties(new Bold() { Val = false });
+            Shading shading = new Shading();
+            rp.Bold.Val = false;
+            rp.RunFonts = new RunFonts() { Ascii = "Calibri" };
+            rp.FontSize = new FontSize() { Val = new StringValue("26") };
+
+            shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto" };
+
+            tcp.Shading = shading;
+            for (int i = 0; i < tableData.Count; i++)
+            {
+                tc = new TableCell();
+                //TableStyle tableStyle = new TableStyle() { Val = "TableGrid" };
+
+                // Make the table width 100% of the page width.
+                TableWidth tableWidth = new TableWidth() { Width = "5000", Type = TableWidthUnitValues.Dxa };
+                //tcp.Append(tableStyle, tableWidth);
+                tcp.Append(tableWidth);
+                
+                if (i == 0 || i == 2 || i == 4)
+                {
+                    tcp.TableCellWidth = new TableCellWidth() { Width = "4900", Type = TableWidthUnitValues.Dxa };
+                    tc.Append((ParagraphProperties)ppr.Clone());
+                    tc.Append((TableCellProperties)tcp.Clone());
+                }
+                else
+                {
+                    tcp.TableCellWidth = new TableCellWidth() { Width = "100", Type = TableWidthUnitValues.Dxa };
+                    tc.Append((ParagraphProperties)ppl.Clone());
+                    tc.Append((TableCellProperties)tcp.Clone());
+                }
+
+                Run r = new Run();
+                r.PrependChild<RunProperties>((RunProperties)rp.Clone());
+                r.Append(new Text(tableData[i].ToString()));
+                tc.Append(new Paragraph(r));
+                tr.Append(tc);
+            }
+
+
+
+            table.Append(tr);
+
+            return table;
+
+        }
+
 
         public string generateInvoiceNumber ()
         {

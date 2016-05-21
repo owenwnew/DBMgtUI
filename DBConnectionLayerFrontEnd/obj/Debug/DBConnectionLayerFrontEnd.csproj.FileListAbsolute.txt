@@ -159,3 +159,32 @@ D:\software\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEn
 D:\software\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd.csproj.GenerateResource.Cache
 D:\software\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd.exe
 D:\software\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd.pdb
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\DBConnectionLayerFrontEnd.exe
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\DBConnectionLayerFrontEnd.pdb
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\DBConnectionLayer.dll
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\MongoDB.Bson.dll
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\MongoDB.Driver.Core.dll
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\MongoDB.Driver.dll
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\WPFTextBoxAutoComplete.dll
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\DBConnectionLayer.pdb
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\MongoDB.Bson.xml
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\bin\Debug\MongoDB.Driver.xml
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd.csprojResolveAssemblyReference.cache
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\MainWindow.g.cs
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\View\CustomerMgtView.g.cs
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\View\InvoiceItemListView.g.cs
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\View\OrderMgtView.g.cs
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\App.g.cs
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd_MarkupCompile.cache
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd_MarkupCompile.lref
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\MainWindow.baml
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\Resource\FrontEndResourceDictionary.baml
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\View\CustomerMgtView.baml
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\View\InvoiceItemListView.baml
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\View\OrderMgtView.baml
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd.g.resources
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd.Properties.Resources.resources
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd.Resource.DirStrings.resources
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\DBConnectionLayerFrontEnd.csproj.GenerateResource.Cache

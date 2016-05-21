@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\software\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\obj\Debug\
 DBConnectionLayerFrontEnd
 none
 false
 DEBUG;TRACE
-D:\software\DBMgtUI\DBConnectionLayerFrontEnd\App.xaml
+C:\Software Development\DBConnectionLib\DBMgtUI\DBConnectionLayerFrontEnd\App.xaml
 51271155041
 
-24647211627
-22-196194125
+24-91116425
+22-998577114
 MainWindow.xaml;Resource\FrontEndResourceDictionary.xaml;View\CustomerMgtView.xaml;View\InvoiceItemListView.xaml;View\OrderMgtView.xaml;
 
 True
