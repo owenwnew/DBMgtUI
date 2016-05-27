@@ -23,7 +23,7 @@ namespace DBConnectionLayer
         {
 
             _client = new MongoClient();
-            _dataBase = _client.GetDatabase("test");
+            _dataBase = _client.GetDatabase("ServiceDB");
             
             
         }
@@ -107,11 +107,14 @@ namespace DBConnectionLayer
 
         }
 
-        public void findInsertedDocument()
+        public void findDocument(string collectionName)
         {
-            var collection = _dataBase.GetCollection<BsonDocument>("testOrders");
+            var collection = _dataBase.GetCollection<BsonDocument>(collectionName);
             var filter = new BsonDocument();
             var count = 0;
+            
+
+
 
             //using (var cursor = await collection.FindAsync(filter))
             //{

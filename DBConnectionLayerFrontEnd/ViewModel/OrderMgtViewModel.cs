@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Data;
+using System.Windows.Forms;
 using System.ComponentModel;
 using System.IO;
 
@@ -23,6 +24,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Office.Interop;
 using Word = Microsoft.Office.Interop.Word;
+
 
 namespace DBConnectionLayerFrontEnd.ViewModel
 {
@@ -82,18 +84,24 @@ namespace DBConnectionLayerFrontEnd.ViewModel
             string invoiceNumber = "";
 
             invoiceNumber = generateInvoiceNumber();
+            try
+            {
+                var invoiceEntity = createInvoiceDBEntity(_itemListViewModel.InvoiceList, invoiceNumber);
 
-            var invoiceEntity = createInvoiceDBEntity(_itemListViewModel.InvoiceList, invoiceNumber);
-            
-            _connectedMongo.insertDocumentToDB(invoiceEntity, "OrderMgtCollection");
+                _connectedMongo.insertDocumentToDB(invoiceEntity, "OrderMgtCollection");
 
-            //updateInvoiceDBEntity(_itemListViewModel.InvoiceList, invoiceNumber); //in the future replace this with createBsonArray at insert stage to save a step.
+                //updateInvoiceDBEntity(_itemListViewModel.InvoiceList, invoiceNumber); //in the future replace this with createBsonArray at insert stage to save a step.
 
-            saveStatus = "Invoice Saved";
-            OnPropertyChanged("saveStatus");
+                saveStatus = "Invoice Saved";
+                OnPropertyChanged("saveStatus");
 
-            invoiceID = Convert.ToString(invoiceNumber);
-            OnPropertyChanged("invoiceID");
+                invoiceID = Convert.ToString(invoiceNumber);
+                OnPropertyChanged("invoiceID");
+            }
+            catch
+            {
+                MessageBox.Show("Check your input on this invoice. Invoice cannot be generated: Error 001", "Input Error");
+            }
         }   
 
         public static BsonArray CreateBsonArray(ObservableCollection<InvoiceItemListModel> invoiceItemList)
@@ -141,10 +149,8 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 var document = new BsonDocument {
                     { "Item", invoiceList[i].item},
                     { "Item Description", invoiceList[i].description},
-                    //{ "Item Catagory", invoiceList[i].itemCatagory},
                     { "Item Unit Price", invoiceList[i].unitPrice},
                     { "Item Total Price", invoiceList[i].totalPrice},
-                    //{ "Item Payment", invoiceList[i].paymentOption},
                 };
 
                 _connectedMongo.updateDocumentInDB(document, "OrderMgtCollection", "Invoice Number", Convert.ToString(generatedInvoiceNumber), "Invoice Detail");
@@ -164,14 +170,6 @@ namespace DBConnectionLayerFrontEnd.ViewModel
             using (WordprocessingDocument package = WordprocessingDocument.Create(pathName  + fileName, WordprocessingDocumentType.Document))
             {
                 package.AddMainDocumentPart();
-                //Body body = package.MainDocumentPart.Document.AppendChild(new Body());
-                //Body body = package.MainDocumentPart.Document.Body;
-
-                //Paragraph para = body.AppendChild(new Paragraph());
-                //Run run = para.AppendChild(new Run());
-
-                //run.AppendChild(new Text("P2SO-" + invoiceID));
-
                 package.MainDocumentPart.Document = new Document(
                     new Body(
                         new Paragraph(
@@ -224,7 +222,7 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 List<string> customerInfoTableData = new List<string>();
                 customerInfoTable.AppendChild<TableProperties>((TableProperties)customerInfoTblprop.Clone());
                 customerInfoTableData.Add("Customer: " +this.customerName);
-                customerInfoTableData.Add("SALES RECEIPT");
+                customerInfoTableData.Add("COMMERCIAL INVOICE");
                 customerInfoTable = AppendCustomerTableInfo(customerInfoTableData, customerInfoTable, false);
 
 
@@ -266,15 +264,16 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 tableData.Add("Unit Price");
                 tableData.Add("Item Total price");
                 invoiceTable = AppendInvoiceTableInfo(tableData, invoiceTable, true);
-
-                tableData = new List<string>();
-                tableData.Add(this._itemListViewModel.InvoiceList[0].item);
-                tableData.Add(this._itemListViewModel.InvoiceList[0].description);
-                tableData.Add(this._itemListViewModel.InvoiceList[0].quantity);
-                tableData.Add(this._itemListViewModel.InvoiceList[0].unitPrice);
-                tableData.Add(this._itemListViewModel.InvoiceList[0].totalPrice);
-                invoiceTable = AppendInvoiceTableInfo(tableData, invoiceTable, false);
-
+                for (int i = 0; i < this._itemListViewModel.InvoiceList.Count(); i++)
+                {
+                    tableData = new List<string>();
+                    tableData.Add(this._itemListViewModel.InvoiceList[i].item);
+                    tableData.Add(this._itemListViewModel.InvoiceList[i].description);
+                    tableData.Add(this._itemListViewModel.InvoiceList[i].quantity);
+                    tableData.Add(this._itemListViewModel.InvoiceList[i].unitPrice);
+                    tableData.Add(this._itemListViewModel.InvoiceList[i].totalPrice);
+                    invoiceTable = AppendInvoiceTableInfo(tableData, invoiceTable, false);
+                }
                 body.Append(invoiceTable);
 
                 #endregion
@@ -435,8 +434,8 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 rp.RunFonts = new RunFonts() { Ascii = "Calibri" };
                 rp.FontSize = new FontSize() { Val = new StringValue("22") };
 
-                shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "e3e6e7" };
-
+                //shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "e3e6e7" };
+                shading = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto" };
                 tcp.Shading = shading;
                 for (int i = 0; i < tableData.Count; i++)
                 {
