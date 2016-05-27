@@ -107,14 +107,17 @@ namespace DBConnectionLayer
 
         }
 
-        public void findDocument(string collectionName)
+        public void findDocument(string collectionName, string findTag, string findValue)
         {
             var collection = _dataBase.GetCollection<BsonDocument>(collectionName);
             var filter = new BsonDocument();
             var count = 0;
+            collection.AsQueryable<BsonDocument>();
+            var query = (from r in collection.AsQueryable<BsonDocument>() select new { findTag = r.Names, findValue = r.Values });
+
             
 
-
+            var list = collection.Find(new BsonDocument(findTag, findValue)).ToListAsync();
 
             //using (var cursor = await collection.FindAsync(filter))
             //{
