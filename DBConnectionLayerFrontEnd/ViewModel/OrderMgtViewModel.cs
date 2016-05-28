@@ -40,7 +40,7 @@ namespace DBConnectionLayerFrontEnd.ViewModel
         ConnectToMongoDB _connectedMongo = new ConnectToMongoDB();
         //int generatedInvoiceNumber = 3000;
         List<BsonDocument> _CustomerInfoDocuments = new List<BsonDocument>();
-       
+        CustomerMgtModel customerInfo = new CustomerMgtModel();
 
         public OrderMgtViewModel()
         {
@@ -75,8 +75,9 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 _CustomerInfoDocuments.Add(b);
             }
 
-            CustomerMgtModel customer = BsonSerializer.Deserialize<CustomerMgtModel>(_CustomerInfoDocuments[0]);
-
+            var firstDoc = BsonSerializer.Deserialize<BsonDocument>(_CustomerInfoDocuments[0]);
+            customerInfo.customerName = Convert.ToString(firstDoc["CustomerName"]);
+            
         }
 
         private InvoiceItemListViewModel initiateItemListViewModel(InvoiceItemListViewModel ItemListViewModel)
