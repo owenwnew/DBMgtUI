@@ -32,8 +32,11 @@ namespace DBConnectionLayerFrontEnd.ViewModel
 
         public void insertToDB()
         {
-            
-            var _document = new BsonDocument {
+            var findResult = _connectedMongo.findDocument("CustomerMgtCollection", "CustomerName", "Owen");
+
+            try
+            {
+                var _document = new BsonDocument {
                 { "CustomerName" , customerName},
                 { "Company", companyName},
                 { "PrimaryPhone", primaryPhone },
@@ -42,25 +45,21 @@ namespace DBConnectionLayerFrontEnd.ViewModel
                 { "CompanyLocation",  companyLocation},
                 {"Comments",comments }
             };
-            
-
-            _connectedMongo.insertDocumentToDB(_document,"CustomerMgtCollection");
 
 
-            //test to see if the added document is in the DB
+                _connectedMongo.insertDocumentToDB(_document, "CustomerMgtCollection");
 
-
-
-            //Update ActionResult status property and notify property change
-            ActionResult = "Customer Added to DB";
-            OnPropertyChanged("ActionResult");
-
-
+                ActionResult = "Customer Added to DB";
+                OnPropertyChanged("ActionResult");
+            }
+            catch
+            {
+                
+            }
         }
 
         public void clearActionResult()
         {
-
             ActionResult = "";
             OnPropertyChanged(ActionResult);
         }

@@ -18,6 +18,7 @@ using DBConnectionLayerFrontEnd.Resource;
 using DBConnectionLayerFrontEnd.View;
 using DBConnectionLayerFrontEnd.Model;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -38,10 +39,12 @@ namespace DBConnectionLayerFrontEnd.ViewModel
         InvoiceItemListViewModel _itemListViewModel;
         ConnectToMongoDB _connectedMongo = new ConnectToMongoDB();
         //int generatedInvoiceNumber = 3000;
+        List<BsonDocument> _CustomerInfoDocuments = new List<BsonDocument>();
+       
 
         public OrderMgtViewModel()
         {
-
+            createCustomerInfoDictionary();
         }
 
         public void createNewList()
@@ -54,6 +57,26 @@ namespace DBConnectionLayerFrontEnd.ViewModel
             this.Workspaces.Add(invoiceItemListViewModel);
             this.SetActiveWorkspace(invoiceItemListViewModel);
             clearStatus();
+        }
+
+        //private async Task initializeDocumentsLibrary()
+        //{
+        //  await  createCustomerInfoDictionary();
+
+        //}
+
+
+        private async Task createCustomerInfoDictionary()
+        {
+            var list = _connectedMongo.findAllDocument("CustomerMgtCollection");
+
+            foreach (BsonDocument b in await list.ConfigureAwait(false))
+            {
+                _CustomerInfoDocuments.Add(b);
+            }
+
+            CustomerMgtModel customer = BsonSerializer.Deserialize<CustomerMgtModel>(_CustomerInfoDocuments[0]);
+
         }
 
         private InvoiceItemListViewModel initiateItemListViewModel(InvoiceItemListViewModel ItemListViewModel)
@@ -82,26 +105,29 @@ namespace DBConnectionLayerFrontEnd.ViewModel
         public void saveListToDB()
         {
             string invoiceNumber = "";
+            //var result = _connectedMongo.findDocument("OrderMgtCollection", "HST", "7");
 
             invoiceNumber = generateInvoiceNumber();
             try
             {
                 var invoiceEntity = createInvoiceDBEntity(_itemListViewModel.InvoiceList, invoiceNumber);
-
+                
                 _connectedMongo.insertDocumentToDB(invoiceEntity, "OrderMgtCollection");
-
-                //updateInvoiceDBEntity(_itemListViewModel.InvoiceList, invoiceNumber); //in the future replace this with createBsonArray at insert stage to save a step.
 
                 saveStatus = "Invoice Saved";
                 OnPropertyChanged("saveStatus");
 
                 invoiceID = Convert.ToString(invoiceNumber);
                 OnPropertyChanged("invoiceID");
+
+
             }
             catch
             {
                 MessageBox.Show("Check your input on this invoice. Invoice cannot be generated: Error 001", "Input Error");
             }
+
+
         }   
 
         public static BsonArray CreateBsonArray(ObservableCollection<InvoiceItemListModel> invoiceItemList)
@@ -228,7 +254,7 @@ namespace DBConnectionLayerFrontEnd.ViewModel
 
                 customerInfoTableData = new List<string>();
                 customerInfoTableData.Add("Email Address:" + this.emailAddress);
-                customerInfoTableData.Add("Invoice P2SO-" + invoiceID);
+                customerInfoTableData.Add("Invoice P1SO-" + invoiceID);
                 customerInfoTable = AppendCustomerTableInfo(customerInfoTableData, customerInfoTable, false);
 
                 customerInfoTableData = new List<string>();
@@ -710,6 +736,8 @@ namespace DBConnectionLayerFrontEnd.ViewModel
             OnPropertyChanged("invoiceID");
         }
 
+        #region local Properties
+
         public string customerName { get; set;}
         public string date { get; set; }
         public string hST { get; set; }
@@ -721,6 +749,7 @@ namespace DBConnectionLayerFrontEnd.ViewModel
         public string phoneNum { get; set; }
         public string emailAddress { get; set; }
         public string paidAmount { get; set; }
+        #endregion
 
         #region ICommands
         public ICommand CreateList

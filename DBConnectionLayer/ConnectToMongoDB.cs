@@ -10,6 +10,7 @@ using System.Net.Http;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using FluentAssertions;
 
 
 namespace DBConnectionLayer
@@ -107,37 +108,46 @@ namespace DBConnectionLayer
 
         }
 
-        public void findDocument(string collectionName, string findTag, string findValue)
+        public async Task<IEnumerable<BsonDocument>> findDocument(string collectionName, string findTag, string findValue)
+        {
+            var collection = _dataBase.GetCollection<BsonDocument>(collectionName);
+
+            var filter = Builders<BsonDocument>.Filter.Eq(findTag, findValue);
+            
+            
+            var list = await collection.Find(new BsonDocument(findTag, findValue)).ToListAsync();
+
+            return list;
+
+        }
+
+        public async Task<IEnumerable<BsonDocument>> findAllDocument(string collectionName)
         {
             var collection = _dataBase.GetCollection<BsonDocument>(collectionName);
             var filter = new BsonDocument();
-            var count = 0;
-            collection.AsQueryable<BsonDocument>();
-            var query = (from r in collection.AsQueryable<BsonDocument>() select new { findTag = r.Names, findValue = r.Values });
+            //List<BsonDocument> returnList = new List<BsonDocument>();
+            var list = await collection.Find(filter).ToListAsync();
 
-            
 
-            var list = collection.Find(new BsonDocument(findTag, findValue)).ToListAsync();
-
-            //using (var cursor = await collection.FindAsync(filter))
+            //using (var cursor = await collection.Find(filter).ToCursorAsync())
             //{
             //    while (await cursor.MoveNextAsync())
             //    {
-            //        var batch = cursor.Current;
-            //        foreach (var document in batch)
-            //            count++;
+            //        foreach (var doc in cursor.Current)
+            //        {
+            //            // do something with the documents
+            //            //list.Add(doc);
+            //            returnList.Add(doc);
+            //        }
             //    }
-
             //}
+
+            
+            //return returnList;
+
+            return list;
         }
 
-        
 
-        //async Task<int> accessTheDBAsync()
-        //{
-
-
-        //}
-        //async Task
     }
 }

@@ -124,17 +124,6 @@ namespace DBConnectionLayerFrontEnd.ViewModel
         }
 
 
-        //public ObservableCollection<CustomerMgtViewModel> CustomerMgts
-        //{
-        //    get
-        //    {
-        //        if()
-                
-        //    }
-
-
-        //}
-
 
         #region Icommands
 

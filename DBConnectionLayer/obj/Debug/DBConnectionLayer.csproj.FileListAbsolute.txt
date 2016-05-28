@@ -44,3 +44,9 @@ D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\MongoDB.Bson.xml
 D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\MongoDB.Driver.xml
 D:\software\DBMgtUI\DBConnectionLayer\obj\Debug\DBConnectionLayer.dll
 D:\software\DBMgtUI\DBConnectionLayer\obj\Debug\DBConnectionLayer.pdb
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\FluentAssertions.Core.dll
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\FluentAssertions.dll
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\FluentAssertions.pdb
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\FluentAssertions.xml
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\FluentAssertions.Core.pdb
+D:\software\DBMgtUI\DBConnectionLayer\bin\Debug\FluentAssertions.Core.xml
